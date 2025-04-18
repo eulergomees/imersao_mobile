@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:imersao_mobile/ui/splash/splash_page.dart';
+import 'package:provider/provider.dart';
 
 import '_core/configs/theme/app_theme.dart';
+import 'data/restaurant_data.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  RestaurantData restaurantData = RestaurantData();
+  await restaurantData.getRestaurants();
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => restaurantData)],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

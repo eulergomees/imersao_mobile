@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imersao_mobile/_core/configs/theme/app_colors.dart';
 
+import '../home/home_page.dart';
+
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
@@ -42,7 +44,12 @@ class SplashPage extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
+                      },
                       child: Text("Bora!"),
                     ),
                   ),
